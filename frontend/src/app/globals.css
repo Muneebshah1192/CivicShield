@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* Dual Theme CSS Variables */
+:root,
+html.dark {
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-card: #131b2e;
+  --bg-card-hover: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #1e293b;
+  --border-subtle: #334155;
+  --primary-accent: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.25);
+  --critical-accent: #ef4444;
+  --critical-glow: rgba(239, 68, 68, 0.35);
+  --success-accent: #10b981;
+  --warning-accent: #f59e0b;
+}
+
+/* Light Theme Variables */
+html.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --border-subtle: #cbd5e1;
+  --primary-accent: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.15);
+  --critical-accent: #dc2626;
+  --critical-glow: rgba(220, 38, 38, 0.2);
+  --success-accent: #059669;
+  --warning-accent: #d97706;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Leaflet Map styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-secondary) !important;
+  border-radius: 1rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem;
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-card) !important;
+}
+
+/* Glowing Pulse Animations matching User Reference */
+@keyframes ring-glow-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes ring-glow-blue {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 16px rgba(59, 130, 246, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.marker-critical-pulse {
+  animation: ring-glow-red 2s infinite;
+  border-radius: 50%;
+}
+
+.marker-active-pulse {
+  animation: ring-glow-blue 2.5s infinite;
+  border-radius: 50%;
+}
+
+/* Subtle glassmorphism card */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+}
